@@ -5,7 +5,7 @@ summary: MatrixCAM - Join the MATRIX!
 ---
 Matrix Effects into your Webcam
 ---
-![MatrixCAM](/download/matrix.gif)
+![MatrixCAM](/images/matrix.gif)
 ## [TRY IT NOW!](/download/matrix.html)
 
  > Have a nice day! :) 
