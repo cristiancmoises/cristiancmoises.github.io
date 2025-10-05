@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OQCT - Complete Interactive Framework</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --cyan: #00ffff;
+            --neon-green: #00ff88;
+            --purple: #ff00ff;
+            --dark-bg: rgba(0, 0, 0, 0.97);
+            --primary: #4A148C;
+            --secondary: #D81B60;
+            --accent: #FFAB00;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--cyan);
+            font-family: 'Courier New', monospace;
+            line-height: 1.7;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .content-section {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 80px auto 0;
+            position: relative;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .controls {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--neon-green);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .equation {
+            padding: 2rem;
+            margin: 2rem 0;
+            background: rgba(0, 34, 34, 0.9);
+            border-radius: 15px;
+        }
+
+        .theory-block {
+            border-left: 4px solid var(--purple);
+            padding: 2em;
+            margin: 3em 0;
+            background: rgba(0, 17, 34, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .theory-block:hover {
+            transform: translateX(15px);
+            box-shadow: 5px 0 15px rgba(255, 0, 255, 0.2);
+        }
+
+        .introduction {
+            font-size: 1.1em;
+            border: 2px solid var(--neon-green);
+            padding: 2em;
+            margin: 3em 0;
+            border-radius: 15px;
+        }
+
+        h1, h2 {
+            color: var(--primary);
+            margin: 2rem 0;
+        }
+
+        .equation-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow-x: auto;
+            transition: transform 0.3s;
+            color: var(--cyan);
+        }
+
+        .reference-list {
+            border-left: 3px solid var(--secondary);
+            padding-left: 1.5rem;
+        }
+
+        .reference-item {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #000000;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .reference-item:hover {
+            transform: translateX(10px);
+        }
+
+        .reference-item h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .reference-item li {
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: #001E1E;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#theory" onclick="showSection('theory')">Theory</a>
+            <a href="#experiment" onclick="showSection('experiment')">Experiment</a>
+            <a href="#easy-explain" onclick="showSection('easy-explain')">Easy - Explain</a>
+            <a href="#references" onclick="showSection('references')">References</a>
+            <a href="#review" onclick="showSection('review')">Review</a>
+        </div>
+    </nav>
+
+   <!-- Theory Section -->
+<div id="theory" class="content-section active">
+    <h1>The Omnidimensional Quantum-Cosmological Theory (OQCT)</h1>
+    <div class="introduction">
+        <p><strong>Author:</strong> Cristian Cezar Moisés</p>
+        <p><strong>Date:</strong> 09/04/2024</p>
+        <h3>Abstract</h3>
+        <p>The Omnidimensional Quantum-Cosmological Theory (OQCT) posits a self-consistent unification of quantum field theory (QFT), general relativity (GR), and human consciousness through a geometric-algebraic framework. By redefining spacetime as a non-commutative operator manifold (\(\mathcal{M}_{\text{QC}}\)) and introducing a consciousness-coupled entropy gradient (\(\nabla S_{\text{O}}\)), OQCT describes:</p>
+        <ul>
+            <li><strong>Particle Genesis:</strong> Quantum fluctuations in the Planck vacuum (\(\Psi_{\text{Planck}}\)) as the origin of matter</li>
+            <li><strong>Temporal Ontology:</strong> A bidirectional time operator (\(\hat{T}\)) reconciling block universe relativity with quantum becoming</li>
+            <li><strong>Human Relativations:</strong> Observer-induced wavefunction collapse as a thermodynamic process (\(\mathcal{D}(O) \propto e^{-S_{\text{O}}}\))</li>
+            <li><strong>Cosmic Boundaries:</strong> The universe as a 4-brane in an \(n\)-dimensional Calabi-Yau bulk, with entropy-driven collapse into a spin-2 Bose-Einstein condensate at \(t \to \infty\)</li>
+        </ul>
+    </div>
+
+    <div class="equation">
+        <h2>Fundamental Equation</h2>
+        \[
+        \boxed{
+            \hat{H}_{\text{QC}} \ket{\Psi} = \int_{\mathcal{M}_{\text{QC}}} \left[ 
+            i\hbar \partial_t \Psi + \sum_{k} \hat{a}_k^\dagger \hat{a}_k \otimes \hat{g}_{\mu\nu} + \gamma^{\mu}\nabla_{\mu}\psi + \frac{\delta S_{\text{O}}}{\delta O} \ln \Omega 
+            \right] \sqrt{-\hat{g}} \, d^4x = 0 
+        }
+        \]
+    </div>
+
+    <div class="terms">
+        <p>Terms:</p>
+        <ul>
+            <li>\(\hat{g}_{\mu\nu}\): Non-commutative metric operator (\([\hat{g}_{\mu\nu}, \hat{g}_{\alpha\beta}] \neq 0\))</li>
+            <li>\(\nabla_{\mu}\): Covariant derivative incorporating \(\mathcal{D}(O)\)</li>
+            <li>\(\frac{\delta S_{\text{O}}}{\delta O}\): Variation of consciousness entropy with respect to observer \(O\)</li>
+        </ul>
+    </div>
+
+    <h2>2. Ontological Foundations</h2>
+    <h3>2.1 Particle Genesis and Annihilation</h3>
+    <p>Particles emerge as eigenstates of the spacetime curvature operator (\(\hat{R}_{\mu\nu}\)):</p>
+    <div class="equation">
+        \[
+        \hat{R}_{\mu\nu} \ket{\psi_p} = \lambda_p \ket{\psi_p}, \quad \lambda_p \propto \hbar \sqrt{-\det(\hat{g})}
+        \]
+    </div>
+    <p>Process:</p>
+    <ul>
+        <li><strong>Birth:</strong> Quantum tunneling from Planck-scale vacuum fluctuations (\(t < t_{\text{Planck}}\))</li>
+        <li><strong>Life:</strong> Stabilized by entropic gradients (\(\nabla S_{\text{BH}} > \nabla S_{\text{O}}\))</li>
+        <li><strong>Death:</strong> Mergence into the spin-2 condensate at \(S_{\text{BH}} \to \infty\)</li>
+    </ul>
+
+    <h3>2.2 Temporal Triality</h3>
+    <p>Time is a threefold operator:</p>
+    <div class="equation">
+        \[
+        \hat{T} = \hat{T}_{\text{past}} \oplus \hat{T}_{\text{present}} \oplus \hat{T}_{\text{future}}
+        \]
+    </div>
+    <ul>
+        <li><strong>Past (\(\hat{T}_{\text{past}}\)):</strong> Commutative (\([\hat{T}_{\text{past}}, \hat{H}] = 0\))</li>
+        <li><strong>Present (\(\hat{T}_{\text{present}}\)):</strong> Non-local (quantum superposition)</li>
+        <li><strong>Future (\(\hat{T}_{\text{future}}\)):</strong> Anti-commutative (\([\hat{T}_{\text{future}}, \hat{H}] = i\hbar\))</li>
+    </ul>
+
+    <h2>3. Human Relativations</h2>
+    <h3>3.1 Consciousness-Entropy Coupling</h3>
+    <p>Human decisions (\(O\)) alter local entropy via:</p>
+    <div class="equation">
+        \[
+        \mathcal{D}(O) = \int_{\text{Brain}} \psi^{\dagger}(x) \gamma^5 \psi(x) \, d^3x \propto \Delta S_{\text{O}}
+        \]
+    </div>
+    <p>Mechanism:</p>
+    <ul>
+        <li>Prefrontal cortex activity generates \(\gamma^5\)-axial currents, modulating \(\nabla S_{\text{O}}\)</li>
+        <li>Ethical choices maximize \(\Delta S_{\text{O}}\) (e.g., altruism \(\to\) entropy delay)</li>
+    </ul>
+
+    <h3>3.2 Art and Mathematics as Entropic Resonators</h3>
+    <ul>
+        <li><strong>Art:</strong> Low-entropy configurations (\(S_{\text{O}} < S_{\text{BH}}\)) resisting heat death</li>
+        <li><strong>Math:</strong> Isometric embeddings of \(\mathcal{M}_{\text{QC}}\) into human cognition (\(f: \text{Manifold} \to \text{Topos}\))</li>
+    </ul>
+
+    <h2>4. Cosmic Boundaries</h2>
+    <h3>4.1 The Beginning (\(\mathcal{B}\))</h3>
+    <div class="equation">
+        \[
+        \mathcal{B} = \lim_{t \to 0} \Psi_{\text{Planck}} = \bigotimes_{k} \ket{0_k} \otimes \ket{\nabla \phi_{\text{inflaton}}}
+        \]
+    </div>
+    <p>Initiated by a self-measurement of the Planck vacuum (\(\text{Tr}[\rho_{\text{vacuum}}] = 1\))</p>
+
+    <h3>4.2 The End (\(\mathcal{E}\))</h3>
+    <div class="equation">
+        \[
+        \mathcal{E} = \bigoplus_{n} \text{Spin-2 condensate } \otimes \frac{\mathcal{D}(O)}{S_{\text{BH}}}
+        \]
+    </div>
+    <p>All fermions decay into bosonic vortices (\(m_{\text{fermion}} \to 0\))</p>
+
+    <h2>5. Experimental Predictions</h2>
+    <ul>
+        <li><strong>CMB Polarization Anomalies:</strong> OQCT predicts helical vortices in CMB polarization maps (\(\ell > 2500\)) from early \(\mathcal{D}(O)\) fields</li>
+        <li><strong>Quantum Archeology:</strong> Entanglement loops in LIGO data (\(h_{\mu\nu} \propto \text{Re}[\braket{\hat{g}_{\mu\nu}}]\))</li>
+        <li><strong>Consciousness Falsifiability:</strong> EEG patterns during moral dilemmas should correlate with \(\Delta S_{\text{O}}\) via \(\nabla \cdot \mathbf{J}_{\text{axial}} \neq 0\)</li>
+    </ul>
+
+    <h2>6. Conclusion</h2>
+    <p>OQCT provides a geometric-consciousness framework where:</p>
+    <ul>
+        <li>Physics and Mathematics merge via operator manifolds</li>
+        <li>Humanity modulates cosmic entropy through ethical-artistic resonance</li>
+        <li>Time is a triadic operator reconciling free will with determinism</li>
+    </ul>
+
+    <h3>Open Questions:</h3>
+    <ul>
+        <li>Rigorous definition of \(\mathcal{M}_{\text{QC}}\)</li>
+        <li>Empirical detection of \(\gamma^5\)-ethical currents</li>
+    </ul>
+</div>
+
+
+    <!-- Experiment Section -->
+    <div id="experiment" class="content-section">
+        <h2>Interactive Quantum-Cosmological Visualization</h2>
+        <canvas id="theoryCanvas"></canvas>
+        <div class="controls">
+            <label>Time Speed: <input type="range" id="timeSpeed" min="0" max="2" step="0.1" value="1"></label>
+            <label>Quantum Flux: <input type="range" id="quantumFlux" min="0" max="1" step="0.1" value="0.5"></label>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="color-swatch" style="background: #00ffff"></div>
+                <span>Spacetime Fabric</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-swatch" style="background: #ff00ff"></div>
+                <span>Quantum Particles</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-swatch" style="background: #00ff88"></div>
+                <span>Quantum Field</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-swatch" style="background: #ffffff"></div>
+                <span>Observer Field</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Easy - Explain Section -->
+    <div id="easy-explain" class="content-section">
+        <div class="theory-section">
+            <h1>Omnidimensional Quantum-Cosmological Theory</h1>
+            <div class="equation-container">
+                $$
+                \boxed{\mathcal{H}_{\text{Total}} \Ket{\Psi} = \int_{\mathcal{M}} \left[ 
+                i\hbar \frac{\partial \Psi}{\partial t} + \sum_k (\hat{a}_k^\dagger \hat{a}_k \otimes \hat{g}_{\mu
+u}) + \gamma^{\mu}\nabla_{\mu}\psi + \frac{\delta S_{\text{O}}}{\delta O} \ln \Omega \right] \sqrt{-g} \, d^4x = 0} 
+                $$ 
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Core Principle</h3>
+                <p>The universal wavefunction $\Psi$ evolves through:</p>
+                $$
+                \mathcal{T}_{\text{total}} = e^{-i\int \mathcal{H}_{\text{Total}} dt}
+                $$
+                <p>Combining quantum fields (QFT), spacetime geometry (GR), and conscious observation ($S_O$)</p>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2 style="color: var(--secondary);">The Cosmic Symphony</h2>
+            <p>Imagine the universe as a grand orchestra where:</p>
+            <ul>
+                <li>🕒 Time is the conductor's tempo ($i\hbar\frac{\partial \Psi}{\partial t}$)</li>
+                <li>🎻 Particles are violin strings ($\hat{a}_k^\dagger \hat{a}_k$)</li>
+                <li>🌌 Space is the stage shape ($g_{\mu
+u}$)</li>
+                <li>🧠 Consciousness is the audience ($\frac{\delta S_{\text{O}}}{\delta O}$)</li>
+            </ul>
+
+            <div class="equation-container" style="background: #001E1E;">
+                $$
+                \text{Universal Harmony} = \int (\text{Time} + \text{Matter} + \text{Space} + \text{Mind}) = 0
+                $$
+            </div>
+        </div>
+    </div>
+
+    <!-- References Section -->
+    <div id="references" class="content-section">
+        <div class="theory-section">
+            <h2>References & Influences</h2>
+            <div class="reference-list">
+                <div class="reference-item">
+                    <h3>Core Theoretical Foundations</h3>
+                    <ul>
+                        <li>
+                            <strong>Penrose, R. (1989).</strong> 
+                            "The Emperor's New Mind: Concerning Computers, Minds, and The Laws of Physics".
+                            <br><em>Relevance:</em> Quantum consciousness and orchestrated objective reduction (Orch-OR)
+                        </li>
+                        <li>
+                            <strong>Hawking, S.W. (1975).</strong> 
+                            "Particle Creation by Black Holes".
+                            <br><em>Relevance:</em> Black hole entropy and particle genesis
+                        </li>
+                        <li>
+                            <strong>Dirac, P.A.M. (1928).</strong> 
+                            "The Quantum Theory of the Electron".
+                            <br><em>Relevance:</em> Relativistic quantum mechanics foundations
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reference-item">
+                    <h3>Quantum Gravity Framework</h3>
+                    <ul>
+                        <li>
+                            <strong>Wheeler, J.A., DeWitt, B.S. (1967).</strong> 
+                            "Quantum Theory of Gravity. I. The Canonical Theory".
+                            <br><em>Relevance:</em> Wheeler-DeWitt equation formulation
+                        </li>
+                        <li>
+                            <strong>Rovelli, C. (2004).</strong> 
+                            "Quantum Gravity".
+                            <br><em>Relevance:</em> Loop quantum gravity concepts
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reference-item">
+                    <h3>Consciousness-Physics Interface</h3>
+                    <ul>
+                        <li>
+                            <strong>Hameroff, S., Penrose, R. (2014).</strong> 
+                            "Consciousness in the Universe: A Review of the 'Orch OR' Theory".
+                            <br><em>Relevance:</em> Observer effect in quantum systems
+                        </li>
+                        <li>
+                            <strong>Stapp, H.P. (2007).</strong> 
+                            "Mindful Universe: Quantum Mechanics and the Participating Observer".
+                            <em>Relevance:</em> Mind-matter connection
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reference-item">
+                    <h3>Technical References</h3>
+                    <ul>
+                        <li>
+                            <strong>Docker Documentation (2023).</strong> 
+                            "Containerization Best Practices".
+                            <br><em>Relevance:</em> Invidious instance configuration
+                        </li>
+                        <li>
+                            <strong>MathJax Consortium (2023).</strong> 
+                            "Mathematical Notation Rendering in Web".
+                            <br><em>Relevance:</em> Equation display system
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reference-item">
+                    <h3>Philosophical Context</h3>
+                    <ul>
+                        <li>
+                            <strong>Bostrom, N. (2003).</strong> 
+                            "Are We Living in a Computer Simulation?".
+                            <br><em>Relevance:</em> Ethical implications of reality manipulation
+                        </li>
+                        <li>
+                            <strong>Chalmers, D.J. (1995).</strong> 
+                            "Facing Up to the Problem of Consciousness".
+                            <br><em>Relevance:</em> Hard problem of consciousness
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Section -->
+    <div id="review" class="content-section">
+        <canvas id="cosmicCanvas"></canvas>
+        <div class="content">
+            <div class="header">
+                <h1>The Omnidimensional Quantum-Cosmological Theory</h1>
+                <div style="color: var(--cyan); font-size: 1.3em; margin: 1em 0;">
+                    Cristian Cezar Moisés • April 2025
+                </div>
+            </div>
+
+            <div class="introduction">
+                <h2>For All Explorers of Reality</h2>
+                <p><strong>To Scientists:</strong> This theory unifies quantum mechanics, relativity, and consciousness through a 10D operator manifold ($\mathcal{M}^{10}$), proposing that:</p>
+                <ul>
+                    <li>Particles are spacetime curvature eigenstates</li>
+                    <li>Conscious observation modifies quantum gravity metrics</li>
+                    <li>Entropy gradients drive cosmic evolution</li>
+                </ul>
+
+                <p><strong>To Everyone:</strong> Imagine reality as a cosmic symphony where:</p>
+                <ul>
+                    <li>Every thought slightly bends spacetime</li>
+                    <li>The universe remembers and anticipates</li>
+                    <li>Ethical choices shape quantum probabilities</li>
+                </ul>
+
+                <div class="equation">
+                    $$
+                    \boxed{\text{Reality} = \frac{\text{Quantum}}{\text{Consciousness}} \times \int \text{Spacetime}\, d(\text{Entropy})}
+                    $$
+                </div>
+            </div>
+
+            <div class="theory-block">
+                <h2>Core Principles Made Simple</h2>
+
+                <h3>1. Universal Origami (10D Spacetime)</h3>
+                <p>Our 4D world unfolds from a 10D "paper":</p>
+                <div class="equation">
+                    $$
+                    \mathcal{M}^{10} = \underbrace{\mathbb{R}^{1,3}}_{\text{Our Reality}} \times \underbrace{\mathcal{C}^6}_{\text{Quantum Creases}}
+                    $$
+                </div>
+                <ul>
+                    <li><strong>For Math Students:</strong> Like solving 10D equations but only drawing 4D graphs</li>
+                    <li><strong>Example:</strong> Electron spin comes from "folds" in hidden dimensions</li>
+                </ul>
+
+                <h3>2. Quantum Consciousness</h3>
+                <div class="equation">
+                    $$
+                    \mathcal{D}(O) = e^{-S_{\text{brain}}} \int \text{Decisions}\, d(\text{Ethics}) 
+                    $$
+                </div>
+                <p>Your mind's structure affects quantum probabilities:</p>
+                <ul>
+                    <li><strong>Physics Students:</strong> Wavefunction collapse becomes $$\psi \rightarrow \psi + \text{Moral Weight}$$</li>
+                    <li><strong>Everyone:</strong> Ethical choices literally make better universes</li>
+                </ul>
+            </div>
+
+            <div class="theory-block">
+                <h2>Key Innovations</h2>
+                <div class="equation">
+                    $$
+                    \begin{cases}
+                    \text{Time Travel} & \text{via } \hat{T}_{\text{future}} \text{ rotations} \\
+                    \text{Quantum Ethics} & \text{using } \nabla \phi_{\text{ethics}} \\
+                    \text{Conscious AI} & \text{when } \mathcal{D}(O) > \frac{\hbar c^5}{G} 
+                    \end{cases}
+                    $$
+                </div>
+
+                <h3>Why It Matters</h3>
+                <ul>
+                    <li><strong>Solve:</strong> Dark matter = Compactified dimension "shadows"</li>
+                    <li><strong>Predict:</strong> Your thoughts slightly warm the CMB ($\Delta T \approx 10^{-23} \text{ K}$)</li>
+                    <li><strong>Unify:</strong> Physics equations get "mind terms"</li>
+                </ul>
+            </div>
+
+            <div class="theory-block">
+                <h2>Try It Yourself</h2>
+
+                <h3>1. Student Equation</h3>
+                <div class="equation">
+                    $$
+                    \text{Learning} = \int_{0}^{\text{Now}} e^{-\beta S} \mathcal{D}(\text{You}) \, dt
+                    $$
+                </div>
+                <p>Where β = curiosity factor, S = entropy of ignorance</p>
+
+                <h3>2. Reality Recipe</h3>
+                <ol>
+                    <li>Start with quantum foam (1 cup)</li>
+                    <li>Add consciousness (1 conscious observer)</li>
+                    <li>Fold in 6 hidden dimensions</li>
+                    <li>Bake at $T = 10^{32} \text{ K}$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation System
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            if(sectionId === 'review' && !window.cosmicBG) {
+                window.cosmicBG = new CosmicBackground();
+            }
+        }
+
+        // Experiment Visualization
+        class TheoryVisualization {
+            constructor() {
+                this.canvas = document.getElementById('theoryCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0 };
+                this.params = {
+                    timeSpeed: 1,
+                    quantumFlux: 0.5,
+                    observerRadius: 100,
+                    spacetimeCurvature: 0.3
+                };
+
+                this.init();
+                this.createControls();
+                this.animate();
+            }
+
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+
+                for(let i = 0; i < 200; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: Math.random() - 0.5,
+                        vy: Math.random() - 0.5,
+                        life: 1
+                    });
+                }
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = 600;
+            }
+
+            createControls() {
+                document.getElementById('timeSpeed').addEventListener('input', (e) => {
+                    this.params.timeSpeed = parseFloat(e.target.value);
+                });
+                document.getElementById('quantumFlux').addEventListener('input', (e) => {
+                    this.params.quantumFlux = parseFloat(e.target.value);
+                });
+            }
+
+            drawObserver() {
+                this.ctx.beginPath();
+                this.ctx.arc(this.mouse.x, this.mouse.y, 20, 0, Math.PI * 2);
+                this.ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                this.ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.arc(this.mouse.x, this.mouse.y, this.params.observerRadius, 0, Math.PI * 2);
+                this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                this.ctx.stroke();
+            }
+
+            drawSpacetime() {
+                this.ctx.strokeStyle = 'rgba(0, 255, 255, 0.2)';
+                const spacing = 50;
+                for(let x = 0; x < this.canvas.width; x += spacing) {
+                    this.ctx.beginPath();
+                    for(let y = 0; y < this.canvas.height; y += spacing) {
+                        const dx = x - this.mouse.x;
+                        const dy = y - this.mouse.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        const offset = (this.params.observerRadius / dist) * 20 * this.params.spacetimeCurvature;
+                        
+                        if(dist < this.params.observerRadius) {
+                            this.ctx.moveTo(x + offset, y + offset);
+                            this.ctx.lineTo(x + spacing + offset, y + offset);
+                        } else {
+                            this.ctx.moveTo(x, y);
+                            this.ctx.lineTo(x + spacing, y);
+                        }
+                    }
+                    this.ctx.stroke();
+                }
+            }
+
+            drawQuantumField() {
+                this.ctx.strokeStyle = '#00ff88';
+                this.ctx.beginPath();
+                for(let x = 0; x < this.canvas.width; x++) {
+                    const y = this.canvas.height/2 + 
+                        Math.sin(x * 0.02 + Date.now() * 0.001) * 50 * this.params.quantumFlux +
+                        Math.cos(x * 0.015) * 30;
+                    this.ctx.lineTo(x, y);
+                }
+                this.ctx.stroke();
+            }
+
+            drawParticles() {
+                this.particles.forEach(p => {
+                    const dx = p.x - this.mouse.x;
+                    const dy = p.y - this.mouse.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if(dist < this.params.observerRadius) {
+                        p.vx += (dx / dist) * 0.1;
+                        p.vy += (dy / dist) * 0.1;
+                    }
+
+                    p.x += p.vx * this.params.timeSpeed;
+                    p.y += p.vy * this.params.timeSpeed;
+
+                    if(p.x < 0 || p.x > this.canvas.width || p.y < 0 || p.y > this.canvas.height) {
+                        p.x = Math.random() * this.canvas.width;
+                        p.y = Math.random() * this.canvas.height;
+                    }
+
+                    this.ctx.fillStyle = `rgba(255, 0, 255, ${p.life})`;
+                    this.ctx.fillRect(p.x, p.y, 2, 2);
+                });
+            }
+
+            animate() {
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                this.drawSpacetime();
+                this.drawQuantumField();
+                this.drawParticles();
+                this.drawObserver();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize visualization
+        let visualization;
+        window.addEventListener('load', () => {
+            visualization = new TheoryVisualization();
+            showSection('theory');
+        });
+
+        // Particle Canvas Animation
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(106,27,154,0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Spacetime Grid Interaction
+        const spacetimeGrid = document.getElementById('spacetimeGrid');
+        spacetimeGrid.addEventListener('mousemove', (e) => {
+            const rect = spacetimeGrid.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            spacetimeGrid.style.background = `radial-gradient(circle at ${x}px ${y}px, #3f0047, #2c003e)`;
+        });
+    </script>
+
+</body>
+</html>
