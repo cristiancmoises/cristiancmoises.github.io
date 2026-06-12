@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>OQCT - Complete Interactive Framework</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Removed polyfill.io: the domain was sold in 2024 and began serving malware to
+         visitors (a supply-chain attack). Modern browsers support ES6 natively, so the
+         polyfill is unnecessary. See https://sansec.io/research/polyfill-supply-chain-attack -->
+    <!-- MathJax pinned to an exact version (not the mutable @3 tag) and loaded with
+         crossorigin so a Subresource Integrity hash can be added once verified offline. -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --cyan: #00ffff;
