@@ -1,0 +1,7 @@
+# Security contact information for cristiancmoises.github.io
+# Format: RFC 9116 — https://www.rfc-editor.org/rfc/rfc9116
+
+Contact: mailto:berkeley@privacyrequired.com
+Expires: 2027-06-12T00:00:00.000Z
+Preferred-Languages: en, pt-BR
+Canonical: https://cristiancmoises.github.io/.well-known/security.txt
