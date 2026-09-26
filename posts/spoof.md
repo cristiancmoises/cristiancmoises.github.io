@@ -8,9 +8,9 @@ Change mac address on reboot
 ![spoof](https://user-images.githubusercontent.com/86272521/158036393-e9df6c24-c152-481a-9c57-f6deee207fd8.png)
 
 # Download
-## [SpoofMac](/download/spoofmac.sh)
+## [SpoofMac](/download/macchanger.sh)
    [eth0](/download/eth0.sh)
-   [enp6s0](/download/enp6s0)
+   [enp6s0](/download/enp6s0.sh)
 
 ### <> SPOOF YOUR MAC ADDRESS: </>
 
@@ -22,4 +22,3 @@ Change mac address on reboot
 - crontab -e
 - @reboot /home/Download/macchanger.sh
  > Have a nice day! :)
-

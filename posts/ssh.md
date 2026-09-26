@@ -1,5 +1,6 @@
 title: SSH for Hacking
 date: 2024-02-18 21:00
+slug: -ssh-for-hacking
 tags: research
 summary: SSH for hacking
 ---

@@ -15,18 +15,18 @@ _____________________________________________
 
 ## Do you need the tor package to run this. Instal tor first!
 > DEBIAN:
-              
+
           apt update && apt upgrade && apt install tor torsocks -y
-> GENTOO: 
-       
+> GENTOO:
+
           emerge tor torsocks
 
-> ARCH: 
-          
+> ARCH:
+
          pacman tor torsocks -Syu
 
-> OPENSUSE: 
-          
+> OPENSUSE:
+
          zypper install tor torsocks -y
 
 ## FIRST STEP - CHANGE THE CONFIG
@@ -37,7 +37,7 @@ Do the same on _toroff.sh_
     cd torando
     chmod +x *
     nano torando.sh
-    
+
 ## EDIT TORRC
 
     nano   /etc/tor/torrc
@@ -56,19 +56,19 @@ Then paste in the end:
 ## FOR SECURITY
 
     chattr +i /etc/resolv.conf
-    
+
 ## THEN REMOVE ALL AND PASTE
-    nameserver 127.0.0.1 
-    
+    nameserver 127.0.0.1
+
 ## FIREFOX CONFIG - NO DNS LEAK
 _Go to the firefox and digit *about:config* then press enter._
-                
+
            about:config
 
 > #### OK, Now paste the command and search, then change the value:
-    network.proxy.socks_remote_dns       |True     
-    browser.safebrowsing.enabled         |True                     
-    browser.safebrowsing.malware.enabled |False             
+    network.proxy.socks_remote_dns       |True
+    browser.safebrowsing.enabled         |True
+    browser.safebrowsing.malware.enabled |False
 
 ## NOW YOU CAN TURN ON THE TORANDO.SH!
       cd torando
@@ -77,13 +77,13 @@ _Go to the firefox and digit *about:config* then press enter._
      cd torando
     ./toroff.sh
 
-## BONUS! EDIT YOUR BASHRC/FISH OR WHATEVER... 
+## BONUS! EDIT YOUR BASHRC/FISH OR WHATEVER...
      nano .bashrc
 ### INCLUDE:
      alias torando="./torando.sh"
      alias toroff="./offtor.sh"
 
-    
-## THAT'S ALL! 
+
+## THAT'S ALL!
 ![anon](/images/anon.gif)
 

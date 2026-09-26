@@ -1,11 +1,13 @@
 # Security Policy
 
+[Português do Brasil](SECURITY.pt-BR.md)
+
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability in this website or its source, please
 report it responsibly:
 
-- **Email:** berkeley@privacyrequired.com
+- **Email:** ethicalhacker@riseup.net
 - Include a clear description, steps to reproduce, and the potential impact.
 - Please do **not** open a public issue for security-sensitive reports.
 
@@ -18,8 +20,9 @@ A machine-readable contact is also published at
 
 ## Scope
 
-This is a static site generated with [Haunt](https://dthompson.us/projects/haunt.html)
-and served via GitHub Pages. The most useful reports include:
+This is a static site generated with [Haunt](https://haunt.dthompson.us/)
+and served from an IONOS VPS through an OpenResty edge protected by OpenAppSec
+and CrowdSec. The most useful reports include:
 
 - Cross-site scripting (XSS) or content injection
 - Secrets or sensitive data committed to the repository
@@ -29,9 +32,11 @@ and served via GitHub Pages. The most useful reports include:
 
 ## Hardening already in place
 
-- All external scripts are pinned to exact versions and loaded with
-  `crossorigin`; the compromised `polyfill.io` CDN has been removed.
+- The portfolio interface does not load third-party JavaScript at runtime.
 - External attribution links use `https://`.
+- The edge enforces HTTPS, HSTS, a restrictive Content Security Policy, and
+  browser isolation headers.
+- The authoritative DNS zone is signed with DNSSEC.
 
 ## Safe Harbor
 

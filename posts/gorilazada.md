@@ -16,7 +16,7 @@ ___________________
 
 # Download
 ## [Gorilazada](/download/gorilazadah.ps1)
-## [Clean](/downlaod/clean.bat)
+## [Clean](/download/clean.bat)
 
 ## Usage:
 In the windows gui perform the following steps:

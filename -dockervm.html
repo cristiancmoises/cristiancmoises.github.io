@@ -1,2 +1,53 @@
-<!DOCTYPE html><head><meta charset="utf-8" /><meta name="description" content="C.C.M. personal website" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>📦 DockerVM — C.C.M. Homepage</title><link rel="stylesheet" href="/css/default.css" /></head><body><header><div id="block"><p>+&gt;---------------------------&lt;+</p><p>[<a href="/about.html">About</a>]--[<a href="/research.html">Research</a>]--[<a href="/projects.html">Projects</a>]</p><p>+&gt;---------------------------&lt;+</p><br /></div></header><div id="block"><h1>📦 DockerVM</h1><div>February 18, 2024</div><div><h2>Use docker like Qemu/VmWare/Virtualbox</h2><p><div style="text-align: center"><img src="/images/dockervm.png" /></div></p><h3>[<a href="/download/exherbo.sh">Exherbo</a>]</h3><h3>[<a href="/download/fedora.sh">Fedora</a>]</h3><h3>[<a href="/download/kali.sh">Kali</a>]</h3><h3>[<a href="/download/void.sh">Void</a>]</h3><h3>ACCESS THE SYSTEM IN THE CONTAINER</h3><div id="code"><pre style="overflow: auto"><code>   docker run -it IMAGE_ID_HERE /bin/bash</code></pre></div><h3>START ALL STOPPED CONTAINERS</h3><div id="code"><pre style="overflow: auto"><code>   docker start $(docker ps -a -q --filter &quot;status=exited&quot;)</code></pre></div><h3>RUN THE LAST STOPPED CONTAINER:</h3><div id="code"><pre style="overflow: auto"><code>   docker start -a -i 'docker ps -q -l'</code></pre></div><h3>LIST ALL IMAGES</h3><div id="code"><pre style="overflow: auto"><code>   docker images</code></pre></div><h3>LIST ALL CONTAINERS</h3><div id="code"><pre style="overflow: auto"><code>   docker ps -a</code></pre></div><h3>RE-ACCESS THE SYSTEMS</h3><div id="code"><pre style="overflow: auto"><code>   docker exec -it CONTAINER_ID_HERE /bin/bash</code></pre></div><h1>NOVNC</h1><h3>GRAPHICAL INTERFACE</h3><div id="code"><pre style="overflow: auto"><code>apt install xfce-desktop xorg -y</code></pre></div><h3>CONFIGURE A PASSWORD FOR ROOT ON KALI</h3><p>passwd</p><h3>FIREWALL - HOST CONFIG</h3><div id="code"><pre style="overflow: auto"><code>iptables -A INPUT -i docker0 -j ACCEPT</code></pre></div><h3>CONFIG FOR KALI LINUX</h3><div id="code"><pre style="overflow: auto"><code>apt update &amp;&amp; apt upgrade &amp;&amp; apt install novnc x11vnc tigervnc-standalone-server dbus-x11 python-py python3-pip -y</code></pre></div><h3>NUMPY INSTALL</h3><div id="code"><pre style="overflow: auto"><code>user &gt; pip install numpy
-user &gt; pip3 install numpy</code></pre></div><h3>START DBUS</h3><div id="code"><pre style="overflow: auto"><code>dbus-launch</code></pre></div><h3>START VNCSERVER</h3><div id="code"><pre style="overflow: auto"><code>vncserver</code></pre></div><h3>START NOVNC</h3><p>/usr/share/novnc/utils/novnc_proxy --listen 8081 --vnc localhost:5900</p><h3>ACESS VIA BROWSER</h3><p>CONTAINER_IP:8081/vnc.html</p><h3>FIX SOME HOSTNAME BUGS</h3><p>echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts</p></div></div><footer><div id="block"><br /><p>+&gt;---------------------------&lt;+</p><div>[<a href="https://codeberg.org/berkeley">Codeberg</a>]--[<a href="https://os.securityos.co/">SecurityOS</a>]</div><div>[<a href="https://github.com/cristiancmoises">GitHub</a>]--[<a href="https://www.linkedin.com/in/cristiancezarmoises">LinkedIn</a>]</div><div>[<a href="https://www.researchgate.net/profile/Cristian-Moises/research">Research</a>]--[<a href="https://securityops.co">TOR</a>]--[<a href="https://youtube.com/@securityops">Youtube</a>]</div><p>© 2025 Cristian Cezar Moises</p><p>[<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>]</p><p>Built with [<a href="https://haunt.dthompson.us">Haunt</a>] in [<a href="https://www.gnu.org/software/guile/guile.html">Scheme</a>]</p><p>+&gt;---------------------------&lt;+</p></div></footer></body>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#000000" /><meta name="author" content="Cristian Cezar Moisés" /><meta name="description" content="📦 DockerVM — Use docker like Qemu/VmWare/VirtualBox | Cristian Cezar Moisés" /><meta name="robots" content="index,follow,max-image-preview:large" /><link rel="canonical" href="https://cristiancezarmoises.com/-dockervm.html" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /><link rel="stylesheet" href="/css/default.css" /><meta property="og:type" content="article" /><meta property="og:site_name" content="Cristian Cezar Moisés" /><meta property="og:locale" content="en_US" /><meta property="og:title" content="📦 DockerVM | Cristian Cezar Moisés" /><meta property="og:description" content="📦 DockerVM — Use docker like Qemu/VmWare/VirtualBox | Cristian Cezar Moisés" /><meta property="og:url" content="https://cristiancezarmoises.com/-dockervm.html" /><meta property="og:image" content="https://cristiancezarmoises.com/images/cristiancezarmoises.webp" /><meta property="og:image:alt" content="Portrait of Cristian Cezar Moisés" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="📦 DockerVM | Cristian Cezar Moisés" /><meta name="twitter:description" content="📦 DockerVM — Use docker like Qemu/VmWare/VirtualBox | Cristian Cezar Moisés" /><meta name="twitter:image" content="https://cristiancezarmoises.com/images/cristiancezarmoises.webp" /><meta name="twitter:image:alt" content="Portrait of Cristian Cezar Moisés" /><meta property="article:published_time" content="2024-02-18" /><title>📦 DockerVM | Cristian Cezar Moisés</title></head><body><a class="skip-link" href="#content">Skip to content</a><header class="site-header"><div class="shell header-inner"><a class="wordmark" href="/" aria-label="Cristian Cezar Moisés, home"><span class="wordmark-mark" aria-hidden="true">C/</span><span>Cristian Cezar Moisés</span></a><nav aria-label="Main navigation"><a href="/">Home</a><a href="/projects.html">Projects</a><a href="/posts.html">Writing</a><a href="/research.html">Research</a><a href="/about.html">About</a><a class="language-link" href="/pt-br/" hreflang="pt-BR">PT-BR</a></nav></div></header><main id="content" class="shell main-content"><article class="post" itemscope="itemscope" itemtype="https://schema.org/Article"><header class="post-header"><a class="back-link" href="/posts.html">← Writing</a><p class="item-meta">Article · <time datetime="2024-02-18" itemprop="datePublished">18/02/2024</time></p><h1 itemprop="headline">📦 DockerVM</h1><p class="post-deck" itemprop="description">Use docker like Qemu/VmWare/VirtualBox</p><meta itemprop="author" content="Cristian Cezar Moisés" /></header><div class="post-content prose" itemprop="articleBody"><h2 class="sr-only">Content</h2><h2>Use docker like Qemu/VmWare/Virtualbox</h2>
+<p><img src="/images/dockervm.png" alt="dockervm" /></p>
+<h3><a href="/download/exherbo.sh">Exherbo</a></h3>
+<h3><a href="/download/fedora.sh">Fedora</a></h3>
+<h3><a href="/download/kali.sh">Kali</a></h3>
+<h3><a href="/download/void.sh">Void</a></h3>
+<h3>ACCESS THE SYSTEM IN THE CONTAINER</h3>
+<pre><code>   docker run -it IMAGE_ID_HERE /bin/bash
+</code></pre>
+<h3>START ALL STOPPED CONTAINERS</h3>
+<pre><code>   docker start $(docker ps -a -q --filter &quot;status=exited&quot;)
+</code></pre>
+<h3>RUN THE LAST STOPPED CONTAINER:</h3>
+<pre><code>   docker start -a -i 'docker ps -q -l'
+</code></pre>
+<h3>LIST ALL IMAGES</h3>
+<pre><code>   docker images
+</code></pre>
+<h3>LIST ALL CONTAINERS</h3>
+<pre><code>   docker ps -a
+</code></pre>
+<h3>RE-ACCESS THE SYSTEMS</h3>
+<pre><code>   docker exec -it CONTAINER_ID_HERE /bin/bash
+</code></pre>
+<h2>NOVNC</h2>
+<h3>GRAPHICAL INTERFACE</h3>
+<pre><code>apt install xfce-desktop xorg -y
+</code></pre>
+<h3>CONFIGURE A PASSWORD FOR ROOT ON KALI</h3>
+<p>passwd</p>
+<h3>FIREWALL - HOST CONFIG</h3>
+<pre><code>iptables -A INPUT -i docker0 -j ACCEPT
+</code></pre>
+<h3>CONFIG FOR KALI LINUX</h3>
+<pre><code>apt update &amp;&amp; apt upgrade &amp;&amp; apt install novnc x11vnc tigervnc-standalone-server dbus-x11 python-py python3-pip -y
+</code></pre>
+<h3>NUMPY INSTALL</h3>
+<pre><code>user &gt; pip install numpy
+user &gt; pip3 install numpy
+</code></pre>
+<h3>START DBUS</h3>
+<pre><code>dbus-launch
+</code></pre>
+<h3>START VNCSERVER</h3>
+<pre><code>vncserver
+</code></pre>
+<h3>START NOVNC</h3>
+<p>/usr/share/novnc/utils/novnc_proxy --listen 8081 --vnc localhost:5900</p>
+<h3>ACESS VIA BROWSER</h3>
+<p>CONTAINER_IP:8081/vnc.html</p>
+<h3>FIX SOME HOSTNAME BUGS</h3>
+<p>echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts</p>
+</div><nav class="post-end" aria-label="Back to collection"><a class="text-link" href="/posts.html">← Back to Writing</a></nav></article></main><footer class="site-footer"><div class="shell footer-inner"><div><p class="footer-heading">Cristian Cezar Moisés</p><p>Free software, security, and projects built in Rio Grande do Sul.</p><p class="copyright">© 2026 Cristian Cezar Moisés · Personal portfolio.</p></div><div><p class="footer-heading">Code and contact</p><ul class="footer-links"><li><a href="https://git.securityops.co/cristiancmoises" rel="me noopener noreferrer">Forgejo · securityops.co</a></li><li><a href="https://git.securityops.com.br/cristiancmoises" rel="me noopener noreferrer">Forgejo · securityops.com.br</a></li><li><a href="mailto:ethicalhacker@riseup.net">ethicalhacker@riseup.net</a></li><li><a href="mailto:sac@securityops.co">sac@securityops.co</a></li><li><a href="https://github.com/cristiancmoises" rel="me noopener noreferrer">GitHub</a></li><li><a href="https://www.linkedin.com/in/cristiancezarmoises" rel="me noopener noreferrer">LinkedIn</a></li></ul></div><p class="footer-license">Theme and source code under <a href="/LICENSE">GPLv3+</a>. Personal content and photograph © Cristian Cezar Moisés.</p></div></footer></body></html>

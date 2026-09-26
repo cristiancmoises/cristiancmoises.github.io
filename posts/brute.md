@@ -14,36 +14,36 @@ Firefox with steroids
              about:config
 _*Then press enter_
 > ### Paste the command and search, then change the value:
-        network.http.pipelining              |True                            
-        network.http.pipelining.maxrequests  |32                  
-        network.http.proxy.pipelining        |True                      
-        network.dns.disableIPv6              |True                            
-        plugin.expose_full_path              |True                            
-        nglayout.initialpaint.delay          |0                           
-        content.notify.backoffcount          |5                           
-        ui.submenuDelay                      |0                                       
-        browser.cache.memory.capacity        |32768                     
-        layout.spellcheckDefault             |2                              
-        browser.download.animateNotifications|False              
-        security.dialog_enable_delay         |0                           
-        network.prefetch-next                |False                              
-        browser.newtabpage.activity-stream.feeds.telemetry |False 
-        browser.newtabpage.activity-stream.telemetry       |False       
-        browser.ping-centre.telemetry        |False                      
-        toolkit.telemetry.archive.enabled    |False                  
-        toolkit.telemetry.bhrPing.enabled    |False                  
-        toolkit.telemetry.enabled            |False                          
-        toolkit.telemetry.firstShutdownPing.enabled        |False        
-        toolkit.telemetry.hybridContent.enabled            |False            
-        toolkit.telemetry.newProfilePing.enabled           |False           
-        toolkit.telemetry.reportingpolicy.firstRun         |False         
-        toolkit.telemetry.shutdownPingSender.enabled       |False      
-        toolkit.telemetry.unified            |False                         
-        toolkit.telemetry.updatePing.enabled |False               
-        reader.parse-on-load.enabled         |False                       
-        reader.parse-on-load.force-enabled   |False                 
-        browser.pocket.enabled               |False                             
-        loop.enabled                         |False                                       
+        network.http.pipelining              |True
+        network.http.pipelining.maxrequests  |32
+        network.http.proxy.pipelining        |True
+        network.dns.disableIPv6              |True
+        plugin.expose_full_path              |True
+        nglayout.initialpaint.delay          |0
+        content.notify.backoffcount          |5
+        ui.submenuDelay                      |0
+        browser.cache.memory.capacity        |32768
+        layout.spellcheckDefault             |2
+        browser.download.animateNotifications|False
+        security.dialog_enable_delay         |0
+        network.prefetch-next                |False
+        browser.newtabpage.activity-stream.feeds.telemetry |False
+        browser.newtabpage.activity-stream.telemetry       |False
+        browser.ping-centre.telemetry        |False
+        toolkit.telemetry.archive.enabled    |False
+        toolkit.telemetry.bhrPing.enabled    |False
+        toolkit.telemetry.enabled            |False
+        toolkit.telemetry.firstShutdownPing.enabled        |False
+        toolkit.telemetry.hybridContent.enabled            |False
+        toolkit.telemetry.newProfilePing.enabled           |False
+        toolkit.telemetry.reportingpolicy.firstRun         |False
+        toolkit.telemetry.shutdownPingSender.enabled       |False
+        toolkit.telemetry.unified            |False
+        toolkit.telemetry.updatePing.enabled |False
+        reader.parse-on-load.enabled         |False
+        reader.parse-on-load.force-enabled   |False
+        browser.pocket.enabled               |False
+        loop.enabled                         |False
 
 ### INSTALL SOME ADDONS TO INCREASE THE SECURITY:
 ![image](https://github.com/cristiancmoises/brutefox/assets/86272521/f93b99c3-b7dc-40a8-8a80-9eb7bc007fe5)

@@ -8,7 +8,7 @@ My Web Operating System
 ### Free. 
 A web operating system for you!
 ### Easy. 
-Just click [here](https://fasteros.vercel.app) and visit now.
+The original web demonstration is no longer published.
 
 For the android app click[here](https://play.google.com/store/apps/details/FasterOS?id=com.faster.os)
 
@@ -46,4 +46,3 @@ FasterOS is a web operating system created for help users in daily tasks and for
 #### ⏱️ Speed up the production process
 #### 🏆 Help the community
 #### 🇧🇷 Official Language
-
