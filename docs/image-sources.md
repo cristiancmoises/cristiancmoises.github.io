@@ -8,6 +8,7 @@ The WebP files in `images/projects/` are optimized copies for fast loading. Wiki
 | --- | --- |
 | `mirim.webp` | [Mirim na wiki](https://wiki.securityops.co/services/mirim.html) |
 | `evelin.webp` | [Evelin na wiki](https://wiki.securityops.co/services/evelin.html) |
+| `turborec.webp` | [Turbo Recorder na wiki](https://wiki.securityops.co/services/turborec.html) |
 | `btp.webp` | [BTP na wiki](https://wiki.securityops.co/services/btp.html) |
 | `esquema.webp` | [Esquema na wiki](https://wiki.securityops.co/services/esquema.html) |
 | `securityops-os.webp` | [Security Ops OS na wiki](https://wiki.securityops.co/services/guix.html) |
